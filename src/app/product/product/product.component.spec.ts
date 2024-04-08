@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductComponent } from './product.component';
+import { Product } from '../product';
+import { By } from '@angular/platform-browser';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
@@ -13,6 +15,7 @@ describe('ProductComponent', () => {
 
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
+    component.product = new Product(12, 'Granit', 22, 34);
     fixture.detectChanges();
   });
 
@@ -26,5 +29,11 @@ describe('ProductComponent', () => {
     component.raisePrice();
 
     expect(component.product.price).toBe(previousPrice + 5);
+  });
+
+  it('should render name correctly', () => {
+    const liName = fixture.debugElement.query(By.css('#name'));
+
+    expect(liName.nativeElement.textContent).toContain('Granit');
   });
 });
