@@ -1,4 +1,7 @@
-<stn-product (priceChange)="onPriceChanged($event)" [product]="productParent">
-  <input type="number" #price />
-  <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button>
-</stn-product>
+<div
+  *ngFor="let prod of products; let isEven = even"
+  [ngClass]="{ 'grey-background': isEven }"
+>
+  <stn-product (priceChange)="onPriceChanged($event)" [product]="prod">
+  </stn-product>
+</div>

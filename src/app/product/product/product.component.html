@@ -1,8 +1,16 @@
-<ul>
-  <li>Id: {{ product.id }}</li>
-  <li id="name">Name: {{ product.name }}</li>
-  <li>Preis: {{ product.price }}</li>
-  <li>Gewicht: {{ product.weight }}</li>
-</ul>
-<ng-content></ng-content>
-<button (click)="raisePrice()">Preis erhöhen</button>
+<div
+  class="border"
+  [ngClass]="{ 'border-green': product.price < 50 }"
+  [ngStyle]="styleConfig"
+>
+  <ul>
+    <li>Id: {{ product.id }}</li>
+    <li id="name">Name: {{ product.name }}</li>
+    <li *ngIf="showPrice">Preis: {{ product.price }}</li>
+    <li>Gewicht: {{ product.weight }}</li>
+  </ul>
+  <input type="number" #price />
+  <button (click)="changePrice(price.valueAsNumber)">Preis ändern</button><br />
+  <button (click)="raisePrice()">Preis erhöhen</button> <br />
+  <button (click)="togglePrice()">Preis ein/ausblenden</button> <br />
+</div>
