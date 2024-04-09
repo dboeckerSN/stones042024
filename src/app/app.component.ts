@@ -55,6 +55,10 @@ export class AppComponent {
     },
   ];
 
+  onSaveProduct(product: Product) {
+    this.products.unshift(product);
+  }
+
   onPriceChanged(price: number) {
     alert('Neuer Preis: ' + price);
   }
