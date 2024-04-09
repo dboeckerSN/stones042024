@@ -8,6 +8,7 @@ import { Product } from './product/product';
 })
 export class AppComponent {
   title = 'stones';
+  today = new Date();
   // productParent = new Product(12, 'Granitstein Gravo', 134.56, 12);
   products: Product[] = [
     {
