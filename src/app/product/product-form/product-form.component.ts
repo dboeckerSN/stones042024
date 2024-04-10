@@ -1,13 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Product } from '../product';
 import { CustomValidators } from '../../utils/validators/custom-validators';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'stn-product-form',
@@ -15,21 +11,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './product-form.component.css',
 })
 export class ProductFormComponent {
-  @Output() saveProduct = new EventEmitter<Product>();
-
   // productForm = new FormGroup({
   //   name: new FormControl('', [Validators.required, CustomValidators.alphaNum]),
   //   price: new FormControl(0, [Validators.required, CustomValidators.positiv]),
   //   weight: new FormControl(0, [Validators.required]),
   // });
-  productForm = this.fb.group({
+  private productService = inject(ProductService);
+  productForm = inject(FormBuilder).group({
     name: ['', [Validators.required, CustomValidators.alphaNum]],
     price: [0, [Validators.required, CustomValidators.positiv]],
     weight: [0, [Validators.required]],
   });
   id = -1;
-  constructor(private fb: FormBuilder, private route: ActivatedRoute) {
-    route.paramMap.subscribe((paramMap) => {
+  constructor() {
+    inject(ActivatedRoute).paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');
       if (id) {
         this.id = +id;
@@ -52,7 +47,7 @@ export class ProductFormComponent {
         formValue.weight
       );
 
-      this.saveProduct.emit(product);
+      this.productService.newProduct(product);
       this.productForm.reset();
     }
   }
