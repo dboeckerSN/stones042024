@@ -1,9 +1,7 @@
-<mat-toolbar color="primary"><span>Stones</span></mat-toolbar>
+<mat-toolbar color="primary">
+  <span>Stones</span>
+  <a [routerLink]="['/products']">ProduktListe</a>
+  <a [routerLink]="['/products/new']">Neues Produkt</a></mat-toolbar
+>
 {{ today | date : "fullDate" | uppercase }}
-<stn-product-form (saveProduct)="onSaveProduct($event)" />
-@for(prod of products; track prod.id; let isEven = $even) {
-<mat-card [ngClass]="{ 'grey-background': isEven }">
-  <stn-product (priceChange)="onPriceChanged($event)" [product]="prod">
-  </stn-product>
-</mat-card>
-}
+<router-outlet />

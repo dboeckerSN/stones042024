@@ -17,7 +17,6 @@ import { MatCardModule } from '@angular/material/card';
     AppRoutingModule,
     UtilsModule,
     MatToolbarModule,
-    MatCardModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

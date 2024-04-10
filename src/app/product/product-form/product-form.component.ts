@@ -16,17 +16,17 @@ import { CustomValidators } from '../../utils/validators/custom-validators';
 export class ProductFormComponent {
   @Output() saveProduct = new EventEmitter<Product>();
 
-  productForm = new FormGroup({
-    name: new FormControl('', [Validators.required, CustomValidators.alphaNum]),
-    price: new FormControl(0, [Validators.required, CustomValidators.positiv]),
-    weight: new FormControl(0, [Validators.required]),
-  });
-  // productForm = this.fb.group({
-  //   name: [''],
-  //   price: [0],
-  //   weight: [0],
+  // productForm = new FormGroup({
+  //   name: new FormControl('', [Validators.required, CustomValidators.alphaNum]),
+  //   price: new FormControl(0, [Validators.required, CustomValidators.positiv]),
+  //   weight: new FormControl(0, [Validators.required]),
   // });
-  // constructor(private fb: FormBuilder) {}
+  productForm = this.fb.group({
+    name: ['', [Validators.required, CustomValidators.alphaNum]],
+    price: [0, [Validators.required, CustomValidators.positiv]],
+    weight: [0, [Validators.required]],
+  });
+  constructor(private fb: FormBuilder) {}
 
   save() {
     const formValue = this.productForm.value;

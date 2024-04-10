@@ -9,12 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        MatCardModule,
-        MatToolbarModule,
-        ProductModule,
-      ],
+      imports: [RouterTestingModule, MatToolbarModule],
       declarations: [AppComponent],
     }).compileComponents();
   });
