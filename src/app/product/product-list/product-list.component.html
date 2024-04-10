@@ -1,5 +1,6 @@
 @for(prod of products; track prod.id; let isEven = $even) {
 <mat-card [ngClass]="{ 'grey-background': isEven }">
   <stn-product [product]="prod"> </stn-product>
+  <button [routerLink]="['/products/new', prod.id]">Produkt ändern</button>
 </mat-card>
 }
