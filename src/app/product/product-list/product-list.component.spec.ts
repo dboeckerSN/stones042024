@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductListComponent } from './product-list.component';
 import { MatCardModule } from '@angular/material/card';
-import { UtilsModule } from '../../utils/utils.module';
 import { ProductComponent } from '../product/product.component';
 import { MockProductService, ProductService } from '../product.service';
+import { NettoPipe } from '../../utils/pipes/netto.pipe';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -13,8 +13,13 @@ describe('ProductListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProductListComponent, ProductComponent],
-      imports: [RouterTestingModule, MatCardModule, UtilsModule],
+      imports: [
+        RouterTestingModule,
+        MatCardModule,
+        NettoPipe,
+        ProductListComponent,
+        ProductComponent,
+      ],
       providers: [{ provide: ProductService, useClass: MockProductService }],
     }).compileComponents();
 

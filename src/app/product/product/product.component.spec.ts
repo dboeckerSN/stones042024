@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductComponent } from './product.component';
 import { Product } from '../product';
 import { By } from '@angular/platform-browser';
-import { UtilsModule } from '../../utils/utils.module';
 import { MatButtonModule } from '@angular/material/button';
+import { NettoPipe } from '../../utils/pipes/netto.pipe';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
@@ -12,8 +12,7 @@ describe('ProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProductComponent],
-      imports: [UtilsModule, MatButtonModule],
+      imports: [NettoPipe, MatButtonModule, ProductComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductComponent);
