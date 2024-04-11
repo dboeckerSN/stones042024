@@ -28,6 +28,8 @@ describe('ProductListComponent', () => {
   });
 
   it('should load products from product service', () => {
-    expect(component.products[0].id).toBe(-1);
+    component.products.subscribe((products) => {
+      expect(products[0].id).toBe(-1);
+    });
   });
 });

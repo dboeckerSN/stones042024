@@ -1,10 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Product } from './product';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  api = 'http://10.20.120.57:3000/products';
+  private http = inject(HttpClient);
   private products: Product[] = [
     {
       id: 0,
@@ -50,25 +54,27 @@ export class ProductService {
     },
   ];
 
-  getList(): Product[] {
-    return this.products;
+  getList(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.api);
   }
 
-  newProduct(product: Product) {
-    this.products.unshift(product);
+  newProduct(product: Partial<Product>): Observable<void> {
+    return this.http.post<void>(this.api, product);
   }
 }
 
 export class MockProductService {
-  getList(): Product[] {
-    return [
+  getList(): Observable<Product[]> {
+    return of([
       {
         id: -1,
         name: 'test',
         price: 1,
         weight: 2,
       },
-    ];
+    ]);
   }
-  newProduct(product: Product) {}
+  newProduct(product: Product): Observable<void> {
+    return of();
+  }
 }

@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, OnInit, inject } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
@@ -8,5 +9,5 @@ import { ProductService } from '../product.service';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
-  products: Product[] = inject(ProductService).getList();
+  products = inject(ProductService).getList();
 }
